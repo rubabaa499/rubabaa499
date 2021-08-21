@@ -1,34 +1,70 @@
-// Binary Search in C++
-
 #include <iostream>
 using namespace std;
 
-int binarySearch(int array[], int x, int low, int high) {
+int binarySearch(int array[],int n, int data) {
 
-	// Repeat until the pointers low and high meet each other
-  while (low <= high) {
-    int mid = low + (high - low) / 2;
+   int  l=0;
+     int r= n-1;
+     int count=0;
+// Repeat until the pointers low and high meet each other
+  while (l<=r) {
+    int mid = (l + r) / 2;
 
-    if (array[mid] == x)
-      return mid;
 
-    if (array[mid] < x)
-      low = mid + 1;
+    if (array[mid] == data)
+
+     {
+       return mid;
+       count++;
+       break;
+
+     }
+
+
+
+
+    else if  (array[mid] < data)
+
+     {
+         l = mid + 1;
+       count++;
+     }
+
 
     else
-      high = mid - 1;
+      {
+        r = mid-1;
+          count++;
+      }
+
   }
 
   return -1;
 }
 
 int main(void) {
-  int array[] = {3, 4, 5, 6, 7, 8, 9};
-  int x = 4;
-  int n = sizeof(array) / sizeof(array[0]);
-  int result = binarySearch(array, x, 0, n - 1);
-  if (result == -1)
-    printf("Not found");
+  int array[100], n, data,count;
+
+   cout<<"Enter the number of elements to be sorted: ";
+    cin>>n;
+
+    for(int i = 0; i < n; i++)
+    {
+        cout<<"Enter element no"<< " " <<i+1<<":";
+        cin>>array[i];
+    }
+    cout<<"element to be searched"<<endl;
+    cin>>data;
+  int val= binarySearch(array,n,data);
+  if (val == -1)
+    {cout<<"Not found";}
   else
-    printf("Element is found at index %d", result);
+   {cout<<"Element is found at index:"<<val<<endl;}
+
+   cout<<"number of comparison:"<<count<<endl;
+
+
+   return 0;
+
 }
+
